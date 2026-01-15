@@ -101,6 +101,12 @@ void PortableUITest::SetUpRealmBase() {
                        Protocol{kPointerInjectorRegistryName}},
       .source = kTestUIStackRef,
       .targets = {ParentRef(), kFlutterJitRunnerRef}});
+
+  // flutter require /tmp
+  realm_builder_.AddRoute(Route{
+      .capabilities = {Storage{"tmp"}},
+      .source = ParentRef(),
+      .targets = {kFlutterJitRunnerRef});
 }
 
 void PortableUITest::ProcessViewGeometryResponse(
